@@ -1,0 +1,15 @@
+services:
+  bot:
+    build: .
+    container_name: ybica_bot
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/src/logs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8000}:${WEB_PORT:-8000}"
+    environment:
+      TZ: Etc/UTC  
